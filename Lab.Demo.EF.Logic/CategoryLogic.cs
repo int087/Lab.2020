@@ -15,6 +15,7 @@ namespace Lab.Demo.EF.Logic
         #region Públicos
         public List<Categories> GetAll()
         {
+            int i = 0;
             var categories = context.Categories.ToList();
 
             if (categories.Count() > 0)
