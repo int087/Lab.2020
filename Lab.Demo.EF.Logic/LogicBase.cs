@@ -12,9 +12,9 @@ namespace Lab.Demo.EF.Logic
     {
         protected NorthwindContext context;
 
-        public LogicBase()
+        public LogicBase(NorthwindContext northwindContext)
         {
-            context = new NorthwindContext();
+            context = northwindContext;
         }
 
     }

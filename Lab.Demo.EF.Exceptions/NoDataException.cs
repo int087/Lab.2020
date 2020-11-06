@@ -8,9 +8,7 @@ namespace Lab.Demo.EF.Exceptions
 {
     public class NoDataException : Exception
     {
-        public NoDataException(string entity) : base(("No se encontraron datos para {0}.", entity).ToString())
-        {
-
-        }
+        public NoDataException() : base("No se encontraron datos.") { }
+        public NoDataException(string entity) : base(("No se encontraron datos para {0}.", entity).ToString()) { }
     }
 }

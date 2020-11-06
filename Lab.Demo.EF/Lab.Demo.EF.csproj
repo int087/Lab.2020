@@ -58,6 +58,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Lab.Demo.EF.DataAccess\Lab.Demo.EF.DataAccess.csproj">
+      <Project>{E92B7FB7-AF58-4C3C-B01F-3A20264BB597}</Project>
+      <Name>Lab.Demo.EF.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Lab.Demo.EF.Entities\Lab.Demo.EF.Entities.csproj">
       <Project>{47CECC4A-6D40-4CA7-94BD-A0AC0B44AED5}</Project>
       <Name>Lab.Demo.EF.Entities</Name>
