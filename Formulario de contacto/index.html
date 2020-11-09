@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript" src="src/logic.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <style>
+            .age {
+                width: 20%;
+            }
+        </style>
+        <title>Formulario de consulta</title>
+        <h1>Contacto</h1>
+        <h4>Completá tus datos</h4>
+    </head>
+    <body>
+        <form style="width: auto;">
+            <fieldset>
+                <legend>Información personal</legend>
+                <label for="firstName">Nombre:</label><br>
+                <input class="text" type="text" id="firstName" name="firstName" placeholder="Nombre"><br>
+                <label for="lastName">Apellido:</label><br>
+                <input class="text" type="text" id="lastName" name="lastName" placeholder="Apellido"><br>
+                <label for="age">Edad:</label><br>
+                <input class="age" type="number" id="age" name="age" placeholder="Edad"><br><br>
+
+                <input type="radio" id="male" name="gender">
+                <label for="male">Hombre</label><br>
+                <input type="radio" id="female" name="gender">
+                <label for="female">Mujer</label><br>
+                <input type="radio" id="other" name="gender">
+                <label for="other">Otros</label>
+            </fieldset>
+            <fieldset>
+                <legend>Información adicional</legend>
+                <label for="company">Empresa:</label><br>
+                <input class="text" type="text" id="company" name="company" placeholder="Empresa"><br>
+            </fieldset>
+
+                <input type="submit" class="button" name="submit" value="Submit">
+                <button class="button">Limpiar datos</button>
+            </form>
+    </body>
+</html>

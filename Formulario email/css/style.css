@@ -1,0 +1,68 @@
+label {
+    font-weight: bold;
+}
+
+form {
+    max-width: 500px;
+    margin: auto;
+    padding: 10px;
+}
+
+button {
+    border-radius: 8px;
+    padding: 10px;
+    border: none;
+    background-color: #0000ff;
+    color: #ffffff;
+}
+
+input[type=submit] {
+    width: 100%;
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #202020;
+    color: #ffffff;
+    border: none;
+}
+
+input[type=file] {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+fieldset {
+    border-radius: 4px;
+    border-color: #6494ed;
+    margin-bottom: 15px;
+}
+
+legend {
+    font-weight: bold;
+}
+
+label[for="file"] {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #106BA0;
+    display: inline-block;
+    transition: all .5s;
+    cursor: pointer;
+    padding: 15px 40px !important;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    width: fit-content;
+    text-align: center;
+}
+
+.text {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
