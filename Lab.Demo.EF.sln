@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab.Demo.EF.Exceptions", "L
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab.Demo.EF.Test", "Lab.Demo.EF.Test\Lab.Demo.EF.Test.csproj", "{8B684DB2-EE20-48EE-BA88-2209AC8A8F3E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab.Demo.EF.Web", "Lab.Demo.EF.Web\Lab.Demo.EF.Web.csproj", "{ACD199B8-4B73-4F77-8DD3-F3D5FC1B1E89}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{8B684DB2-EE20-48EE-BA88-2209AC8A8F3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B684DB2-EE20-48EE-BA88-2209AC8A8F3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B684DB2-EE20-48EE-BA88-2209AC8A8F3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACD199B8-4B73-4F77-8DD3-F3D5FC1B1E89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACD199B8-4B73-4F77-8DD3-F3D5FC1B1E89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACD199B8-4B73-4F77-8DD3-F3D5FC1B1E89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACD199B8-4B73-4F77-8DD3-F3D5FC1B1E89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

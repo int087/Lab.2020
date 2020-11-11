@@ -38,7 +38,21 @@ namespace Lab.Demo.EF.Logic
         {
             try
             {
+                var ii = id.ToString();
                 return context.Territories.First(t => t.TerritoryID == id.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw new NoDataException("Territorios");
+            }
+        }
+
+        public Territories GetOne(string id)
+        {
+            try
+            {
+
+                return context.Territories.First(t => t.TerritoryID == id);
             }
             catch (Exception ex)
             {
@@ -60,7 +74,6 @@ namespace Lab.Demo.EF.Logic
 
         public Territories Insert(Territories entity)
         {
-            var regionLogic = new RegionLogic(context);
             try
             {
                 var newTerritory = entity;
@@ -88,7 +101,8 @@ namespace Lab.Demo.EF.Logic
             {
                 var territory = this.GetOne(int.Parse(entity.TerritoryID));
                 territory.TerritoryDescription = entity.TerritoryDescription;
-
+                territory.RegionID = entity.RegionID;
+ 
                 context.SaveChanges();
                 log.Debug($"Se actualizó Territorio {entity.TerritoryID}.");
 
@@ -125,7 +139,7 @@ namespace Lab.Demo.EF.Logic
             }
             catch (Exception ex)
             {
-                log.Error($"Ocurrió un error al borar el Territorio {id}.");
+                log.Error($"Ocurrió un error al borrar el Territorio {id}.");
                 throw new ErrorDeleteException();
             }
         }

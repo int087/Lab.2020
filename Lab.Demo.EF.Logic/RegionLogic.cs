@@ -2,6 +2,7 @@
 using Lab.Demo.EF.Entities;
 using Lab.Demo.EF.Exceptions;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,9 +23,16 @@ namespace Lab.Demo.EF.Logic
 
         public List<Region> GetAll()
         {
-            // Método no implementado aún, sólo implementé el GetOne que lo necesitaba para agregar registros a territorios
-            // Luego termino la implementación completa.
-            throw new NotImplementedException();
+            var regions = context.Region.ToList();
+
+            if (regions.Count() > 0)
+            {
+                return regions;
+            }
+            else
+            {
+                throw new NoDataException("Regiones");
+            }
         }
 
         public Region GetOne(int id)
