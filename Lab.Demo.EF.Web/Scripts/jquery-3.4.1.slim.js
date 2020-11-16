@@ -544,7 +544,7 @@ var i,
 	matches,
 	contains,
 
-	// Instance-specific data
+	// Instance-specific Data
 	expando = "sizzle" + 1 * new Date(),
 	preferredDoc = window.document,
 	dirruns = 0,
@@ -587,7 +587,7 @@ var i,
 	// http://www.w3.org/TR/css3-selectors/#whitespace
 	whitespace = "[\\x20\\t\\r\\n\\f]",
 
-	// http://www.w3.org/TR/CSS21/syndata.html#value-def-identifier
+	// http://www.w3.org/TR/CSS21/synData.html#value-def-identifier
 	identifier = "(?:\\\\.|[\\w-]|[^\0-\\xa0])+",
 
 	// Attribute selectors: http://www.w3.org/TR/selectors/#attribute-selectors
@@ -647,7 +647,7 @@ var i,
 	rsibling = /[+~]/,
 
 	// CSS escapes
-	// http://www.w3.org/TR/CSS21/syndata.html#escaped-characters
+	// http://www.w3.org/TR/CSS21/synData.html#escaped-characters
 	runescape = new RegExp( "\\\\([\\da-f]{1,6}" + whitespace + "?|(" + whitespace + ")|.)", "ig" ),
 	funescape = function( _, escaped, escapedWhitespace ) {
 		var high = "0x" + escaped - 0x10000;
@@ -815,7 +815,7 @@ function Sizzle( selector, context, results, seed ) {
 				newSelector = selector;
 				newContext = context;
 
-				// qSA considers elements outside a scoping root when evaluating child or
+				// qSA considers elements outside a scoping Data when evaluating child or
 				// descendant combinators, which is not what we want.
 				// In such cases, we work around the behavior by prefixing every selector in the
 				// list with an ID selector referencing the scope context.
@@ -864,7 +864,7 @@ function Sizzle( selector, context, results, seed ) {
 
 /**
  * Create key-value caches of limited size
- * @returns {function(string, object)} Returns the Object data after storing it on itself with
+ * @returns {function(string, object)} Returns the Object Data after storing it on itself with
  *	property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
  *	deleting the oldest entry
  */
@@ -1810,7 +1810,7 @@ Expr = Sizzle.selectors = {
 
 						start = [ forward ? parent.firstChild : parent.lastChild ];
 
-						// non-xml :nth-child(...) stores cache data on `parent`
+						// non-xml :nth-child(...) stores cache Data on `parent`
 						if ( forward && useCache ) {
 
 							// Seek `elem` from a previously-cached index
@@ -2014,7 +2014,7 @@ Expr = Sizzle.selectors = {
 			return hash && hash.slice( 1 ) === elem.id;
 		},
 
-		"root": function( elem ) {
+		"Data": function( elem ) {
 			return elem === docElem;
 		},
 
@@ -2046,7 +2046,7 @@ Expr = Sizzle.selectors = {
 		// Contents
 		"empty": function( elem ) {
 			// http://www.w3.org/TR/selectors/#empty-pseudo
-			// :empty is negated by element (1) or content nodes (text: 3; cdata: 4; entity ref: 5),
+			// :empty is negated by element (1) or content nodes (text: 3; cData: 4; entity ref: 5),
 			//   but not by others (comment: 8; processing instruction: 7; etc.)
 			// nodeType < 6 works because attributes (2) do not appear as children
 			for ( elem = elem.firstChild; elem; elem = elem.nextSibling ) {
@@ -2251,7 +2251,7 @@ function addCombinator( matcher, combinator, base ) {
 			var oldCache, uniqueCache, outerCache,
 				newCache = [ dirruns, doneName ];
 
-			// We can't set arbitrary data on XML nodes, so they don't benefit from combinator caching
+			// We can't set arbitrary Data on XML nodes, so they don't benefit from combinator caching
 			if ( xml ) {
 				while ( (elem = elem[ dir ]) ) {
 					if ( elem.nodeType === 1 || checkNonElements ) {
@@ -2922,8 +2922,8 @@ jQuery.fn.extend( {
 // Initialize a jQuery object
 
 
-// A central reference to the root jQuery(document)
-var rootjQuery,
+// A central reference to the Data jQuery(document)
+var DatajQuery,
 
 	// A simple way to check for HTML strings
 	// Prioritize #id over <tag> to avoid XSS via location.hash (#9521)
@@ -2931,7 +2931,7 @@ var rootjQuery,
 	// Shortcut simple #id case for speed
 	rquickExpr = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]+))$/,
 
-	init = jQuery.fn.init = function( selector, context, root ) {
+	init = jQuery.fn.init = function( selector, context, Data ) {
 		var match, elem;
 
 		// HANDLE: $(""), $(null), $(undefined), $(false)
@@ -2939,9 +2939,9 @@ var rootjQuery,
 			return this;
 		}
 
-		// Method init() accepts an alternate rootjQuery
+		// Method init() accepts an alternate DatajQuery
 		// so migrate can support jQuery.sub (gh-2101)
-		root = root || rootjQuery;
+		Data = Data || DatajQuery;
 
 		// Handle HTML strings
 		if ( typeof selector === "string" ) {
@@ -3003,7 +3003,7 @@ var rootjQuery,
 
 			// HANDLE: $(expr, $(...))
 			} else if ( !context || context.jquery ) {
-				return ( context || root ).find( selector );
+				return ( context || Data ).find( selector );
 
 			// HANDLE: $(expr, context)
 			// (which is just equivalent to: $(context).find(expr)
@@ -3020,8 +3020,8 @@ var rootjQuery,
 		// HANDLE: $(function)
 		// Shortcut for document ready
 		} else if ( isFunction( selector ) ) {
-			return root.ready !== undefined ?
-				root.ready( selector ) :
+			return Data.ready !== undefined ?
+				Data.ready( selector ) :
 
 				// Execute immediately if ready is not present
 				selector( jQuery );
@@ -3034,7 +3034,7 @@ var rootjQuery,
 init.prototype = jQuery.fn;
 
 // Initialize central reference
-rootjQuery = jQuery( document );
+DatajQuery = jQuery( document );
 
 
 var rparentsprev = /^(?:parents|prev(?:Until|All))/,
@@ -3268,7 +3268,7 @@ jQuery.Callbacks = function( options ) {
 		// Actual callback list
 		list = [],
 
-		// Queue of execution data for repeatable lists
+		// Queue of execution Data for repeatable lists
 		queue = [],
 
 		// Index of currently firing callback (modified by add/remove as needed)
@@ -3291,14 +3291,14 @@ jQuery.Callbacks = function( options ) {
 					if ( list[ firingIndex ].apply( memory[ 0 ], memory[ 1 ] ) === false &&
 						options.stopOnFalse ) {
 
-						// Jump to end and forget the data so .add doesn't re-fire
+						// Jump to end and forget the Data so .add doesn't re-fire
 						firingIndex = list.length;
 						memory = false;
 					}
 				}
 			}
 
-			// Forget the data if we're done with it
+			// Forget the Data if we're done with it
 			if ( !options.memory ) {
 				memory = false;
 			}
@@ -3308,7 +3308,7 @@ jQuery.Callbacks = function( options ) {
 			// Clean up if we're done firing for good
 			if ( locked ) {
 
-				// Keep an empty list if we have data for future add calls
+				// Keep an empty list if we have Data for future add calls
 				if ( memory ) {
 					list = [];
 
@@ -3788,7 +3788,7 @@ jQuery.extend( {
 			// count of unprocessed arguments
 			i = remaining,
 
-			// subordinate fulfillment data
+			// subordinate fulfillment Data
 			resolveContexts = Array( i ),
 			resolveValues = slice.call( arguments ),
 
@@ -4004,7 +4004,7 @@ function fcamelCase( all, letter ) {
 	return letter.toUpperCase();
 }
 
-// Convert dashed to camelCase; used by the css and data modules
+// Convert dashed to camelCase; used by the css and Data modules
 // Support: IE <=9 - 11, Edge 12 - 15
 // Microsoft forgot to hump their vendor prefix (#9572)
 function camelCase( string ) {
@@ -4041,7 +4041,7 @@ Data.prototype = {
 		if ( !value ) {
 			value = {};
 
-			// We can accept data for non-element nodes in modern browsers,
+			// We can accept Data for non-element nodes in modern browsers,
 			// but we should not, see #8335.
 			// Always return an empty object.
 			if ( acceptData( owner ) ) {
@@ -4053,7 +4053,7 @@ Data.prototype = {
 
 				// Otherwise secure it in a non-enumerable property
 				// configurable must be true to allow the property to be
-				// deleted when data is removed
+				// deleted when Data is removed
 				} else {
 					Object.defineProperty( owner, this.expando, {
 						value: value,
@@ -4065,21 +4065,21 @@ Data.prototype = {
 
 		return value;
 	},
-	set: function( owner, data, value ) {
+	set: function( owner, Data, value ) {
 		var prop,
 			cache = this.cache( owner );
 
 		// Handle: [ owner, key, value ] args
 		// Always use camelCase key (gh-2257)
-		if ( typeof data === "string" ) {
-			cache[ camelCase( data ) ] = value;
+		if ( typeof Data === "string" ) {
+			cache[ camelCase( Data ) ] = value;
 
 		// Handle: [ owner, { properties } ] args
 		} else {
 
 			// Copy the properties one-by-one to the cache object
-			for ( prop in data ) {
-				cache[ camelCase( prop ) ] = data[ prop ];
+			for ( prop in Data ) {
+				cache[ camelCase( prop ) ] = Data[ prop ];
 			}
 		}
 		return cache;
@@ -4102,7 +4102,7 @@ Data.prototype = {
 		// which value to return, respectively either:
 		//
 		//   1. The entire cache object
-		//   2. The data stored at the key
+		//   2. The Data stored at the key
 		//
 		if ( key === undefined ||
 				( ( key && typeof key === "string" ) && value === undefined ) ) {
@@ -4119,7 +4119,7 @@ Data.prototype = {
 		this.set( owner, key, value );
 
 		// Since the "set" path can have two possible entry points
-		// return the expected data based on which path was taken[*]
+		// return the expected Data based on which path was taken[*]
 		return value !== undefined ? value : key;
 	},
 	remove: function( owner, key ) {
@@ -4155,7 +4155,7 @@ Data.prototype = {
 			}
 		}
 
-		// Remove the expando if there's no more data
+		// Remove the expando if there's no more Data
 		if ( key === undefined || jQuery.isEmptyObject( cache ) ) {
 
 			// Support: Chrome <=35 - 45
@@ -4174,9 +4174,9 @@ Data.prototype = {
 		return cache !== undefined && !jQuery.isEmptyObject( cache );
 	}
 };
-var dataPriv = new Data();
+var DataPriv = new Data();
 
-var dataUser = new Data();
+var DataUser = new Data();
 
 
 
@@ -4185,98 +4185,98 @@ var dataUser = new Data();
 //	1. Enforce API surface and semantic compatibility with 1.9.x branch
 //	2. Improve the module's maintainability by reducing the storage
 //		paths to a single mechanism.
-//	3. Use the same single mechanism to support "private" and "user" data.
-//	4. _Never_ expose "private" data to user code (TODO: Drop _data, _removeData)
+//	3. Use the same single mechanism to support "private" and "user" Data.
+//	4. _Never_ expose "private" Data to user code (TODO: Drop _Data, _removeData)
 //	5. Avoid exposing implementation details on user objects (eg. expando properties)
 //	6. Provide a clear path for implementation upgrade to WeakMap in 2014
 
 var rbrace = /^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,
 	rmultiDash = /[A-Z]/g;
 
-function getData( data ) {
-	if ( data === "true" ) {
+function getData( Data ) {
+	if ( Data === "true" ) {
 		return true;
 	}
 
-	if ( data === "false" ) {
+	if ( Data === "false" ) {
 		return false;
 	}
 
-	if ( data === "null" ) {
+	if ( Data === "null" ) {
 		return null;
 	}
 
 	// Only convert to a number if it doesn't change the string
-	if ( data === +data + "" ) {
-		return +data;
+	if ( Data === +Data + "" ) {
+		return +Data;
 	}
 
-	if ( rbrace.test( data ) ) {
-		return JSON.parse( data );
+	if ( rbrace.test( Data ) ) {
+		return JSON.parse( Data );
 	}
 
-	return data;
+	return Data;
 }
 
-function dataAttr( elem, key, data ) {
+function DataAttr( elem, key, Data ) {
 	var name;
 
 	// If nothing was found internally, try to fetch any
-	// data from the HTML5 data-* attribute
-	if ( data === undefined && elem.nodeType === 1 ) {
-		name = "data-" + key.replace( rmultiDash, "-$&" ).toLowerCase();
-		data = elem.getAttribute( name );
+	// Data from the HTML5 Data-* attribute
+	if ( Data === undefined && elem.nodeType === 1 ) {
+		name = "Data-" + key.replace( rmultiDash, "-$&" ).toLowerCase();
+		Data = elem.getAttribute( name );
 
-		if ( typeof data === "string" ) {
+		if ( typeof Data === "string" ) {
 			try {
-				data = getData( data );
+				Data = getData( Data );
 			} catch ( e ) {}
 
-			// Make sure we set the data so it isn't changed later
-			dataUser.set( elem, key, data );
+			// Make sure we set the Data so it isn't changed later
+			DataUser.set( elem, key, Data );
 		} else {
-			data = undefined;
+			Data = undefined;
 		}
 	}
-	return data;
+	return Data;
 }
 
 jQuery.extend( {
 	hasData: function( elem ) {
-		return dataUser.hasData( elem ) || dataPriv.hasData( elem );
+		return DataUser.hasData( elem ) || DataPriv.hasData( elem );
 	},
 
-	data: function( elem, name, data ) {
-		return dataUser.access( elem, name, data );
+	Data: function( elem, name, Data ) {
+		return DataUser.access( elem, name, Data );
 	},
 
 	removeData: function( elem, name ) {
-		dataUser.remove( elem, name );
+		DataUser.remove( elem, name );
 	},
 
-	// TODO: Now that all calls to _data and _removeData have been replaced
-	// with direct calls to dataPriv methods, these can be deprecated.
-	_data: function( elem, name, data ) {
-		return dataPriv.access( elem, name, data );
+	// TODO: Now that all calls to _Data and _removeData have been replaced
+	// with direct calls to DataPriv methods, these can be deprecated.
+	_Data: function( elem, name, Data ) {
+		return DataPriv.access( elem, name, Data );
 	},
 
 	_removeData: function( elem, name ) {
-		dataPriv.remove( elem, name );
+		DataPriv.remove( elem, name );
 	}
 } );
 
 jQuery.fn.extend( {
-	data: function( key, value ) {
-		var i, name, data,
+	Data: function( key, value ) {
+		var i, name, Data,
 			elem = this[ 0 ],
 			attrs = elem && elem.attributes;
 
 		// Gets all values
 		if ( key === undefined ) {
 			if ( this.length ) {
-				data = dataUser.get( elem );
+				Data = DataUser.get( elem );
 
-				if ( elem.nodeType === 1 && !dataPriv.get( elem, "hasDataAttrs" ) ) {
+				if ( elem.nodeType === 1 && !DataPriv.get( elem, "hasDataAttrs" ) ) {
 					i = attrs.length;
 					while ( i-- ) {
 
@@ -4284,85 +4284,85 @@ jQuery.fn.extend( {
 						// The attrs elements can be null (#14894)
 						if ( attrs[ i ] ) {
 							name = attrs[ i ].name;
-							if ( name.indexOf( "data-" ) === 0 ) {
+							if ( name.indexOf( "Data-" ) === 0 ) {
 								name = camelCase( name.slice( 5 ) );
-								dataAttr( elem, name, data[ name ] );
+								DataAttr( elem, name, Data[ name ] );
 							}
 						}
 					}
-					dataPriv.set( elem, "hasDataAttrs", true );
+					DataPriv.set( elem, "hasDataAttrs", true );
 				}
 			}
 
-			return data;
+			return Data;
 		}
 
 		// Sets multiple values
 		if ( typeof key === "object" ) {
 			return this.each( function() {
-				dataUser.set( this, key );
+				DataUser.set( this, key );
 			} );
 		}
 
 		return access( this, function( value ) {
-			var data;
+			var Data;
 
 			// The calling jQuery object (element matches) is not empty
 			// (and therefore has an element appears at this[ 0 ]) and the
 			// `value` parameter was not undefined. An empty jQuery object
 			// will result in `undefined` for elem = this[ 0 ] which will
-			// throw an exception if an attempt to read a data cache is made.
+			// throw an exception if an attempt to read a Data cache is made.
 			if ( elem && value === undefined ) {
 
-				// Attempt to get data from the cache
+				// Attempt to get Data from the cache
 				// The key will always be camelCased in Data
-				data = dataUser.get( elem, key );
-				if ( data !== undefined ) {
-					return data;
+				Data = DataUser.get( elem, key );
+				if ( Data !== undefined ) {
+					return Data;
 				}
 
-				// Attempt to "discover" the data in
-				// HTML5 custom data-* attrs
-				data = dataAttr( elem, key );
-				if ( data !== undefined ) {
-					return data;
+				// Attempt to "discover" the Data in
+				// HTML5 custom Data-* attrs
+				Data = DataAttr( elem, key );
+				if ( Data !== undefined ) {
+					return Data;
 				}
 
-				// We tried really hard, but the data doesn't exist.
+				// We tried really hard, but the Data doesn't exist.
 				return;
 			}
 
-			// Set the data...
+			// Set the Data...
 			this.each( function() {
 
 				// We always store the camelCased key
-				dataUser.set( this, key, value );
+				DataUser.set( this, key, value );
 			} );
 		}, null, value, arguments.length > 1, null, true );
 	},
 
 	removeData: function( key ) {
 		return this.each( function() {
-			dataUser.remove( this, key );
+			DataUser.remove( this, key );
 		} );
 	}
 } );
 
 
 jQuery.extend( {
-	queue: function( elem, type, data ) {
+	queue: function( elem, type, Data ) {
 		var queue;
 
 		if ( elem ) {
 			type = ( type || "fx" ) + "queue";
-			queue = dataPriv.get( elem, type );
+			queue = DataPriv.get( elem, type );
 
 			// Speed up dequeue by getting out quickly if this is just a lookup
-			if ( data ) {
-				if ( !queue || Array.isArray( data ) ) {
-					queue = dataPriv.access( elem, type, jQuery.makeArray( data ) );
+			if ( Data ) {
+				if ( !queue || Array.isArray( Data ) ) {
+					queue = DataPriv.access( elem, type, jQuery.makeArray( Data ) );
 				} else {
-					queue.push( data );
+					queue.push( Data );
 				}
 			}
 			return queue || [];
@@ -4407,20 +4407,20 @@ jQuery.extend( {
 	// Not public - generate a queueHooks object, or return the current one
 	_queueHooks: function( elem, type ) {
 		var key = type + "queueHooks";
-		return dataPriv.get( elem, key ) || dataPriv.access( elem, key, {
+		return DataPriv.get( elem, key ) || DataPriv.access( elem, key, {
 			empty: jQuery.Callbacks( "once memory" ).add( function() {
-				dataPriv.remove( elem, [ type + "queue", key ] );
+				DataPriv.remove( elem, [ type + "queue", key ] );
 			} )
 		} );
 	}
 } );
 
 jQuery.fn.extend( {
-	queue: function( type, data ) {
+	queue: function( type, Data ) {
 		var setter = 2;
 
 		if ( typeof type !== "string" ) {
-			data = type;
+			Data = type;
 			type = "fx";
 			setter--;
 		}
@@ -4429,10 +4429,10 @@ jQuery.fn.extend( {
 			return jQuery.queue( this[ 0 ], type );
 		}
 
-		return data === undefined ?
+		return Data === undefined ?
 			this :
 			this.each( function() {
-				var queue = jQuery.queue( this, type, data );
+				var queue = jQuery.queue( this, type, Data );
 
 				// Ensure a hooks for this queue
 				jQuery._queueHooks( this, type );
@@ -4472,7 +4472,7 @@ jQuery.fn.extend( {
 		type = type || "fx";
 
 		while ( i-- ) {
-			tmp = dataPriv.get( elements[ i ], type + "queueHooks" );
+			tmp = DataPriv.get( elements[ i ], type + "queueHooks" );
 			if ( tmp && tmp.empty ) {
 				count++;
 				tmp.empty.add( resolve );
@@ -4501,12 +4501,12 @@ var documentElement = document.documentElement;
 	// Support: IE 9 - 11+, Edge 12 - 18+, iOS 10.0 - 10.2 only
 	// Check attachment across shadow DOM boundaries when possible (gh-3504)
 	// Support: iOS 10.0-10.2 only
-	// Early iOS 10 versions support `attachShadow` but not `getRootNode`,
-	// leading to errors. We need to check for `getRootNode`.
-	if ( documentElement.getRootNode ) {
+	// Early iOS 10 versions support `attachShadow` but not `getDataNode`,
+	// leading to errors. We need to check for `getDataNode`.
+	if ( documentElement.getDataNode ) {
 		isAttached = function( elem ) {
 			return jQuery.contains( elem.ownerDocument, elem ) ||
-				elem.getRootNode( composed ) === elem.ownerDocument;
+				elem.getDataNode( composed ) === elem.ownerDocument;
 		};
 	}
 var isHiddenWithinTree = function( elem, el ) {
@@ -4662,7 +4662,7 @@ function showHide( elements, show ) {
 			// check is required in this first loop unless we have a nonempty display value (either
 			// inline or about-to-be-restored)
 			if ( display === "none" ) {
-				values[ index ] = dataPriv.get( elem, "display" ) || null;
+				values[ index ] = DataPriv.get( elem, "display" ) || null;
 				if ( !values[ index ] ) {
 					elem.style.display = "";
 				}
@@ -4675,7 +4675,7 @@ function showHide( elements, show ) {
 				values[ index ] = "none";
 
 				// Remember what we're overwriting
-				dataPriv.set( elem, "display", display );
+				DataPriv.set( elem, "display", display );
 			}
 		}
 	}
@@ -4773,10 +4773,10 @@ function setGlobalEval( elems, refElements ) {
 		l = elems.length;
 
 	for ( ; i < l; i++ ) {
-		dataPriv.set(
+		DataPriv.set(
 			elems[ i ],
 			"globalEval",
-			!refElements || dataPriv.get( refElements[ i ], "globalEval" )
+			!refElements || DataPriv.get( refElements[ i ], "globalEval" )
 		);
 	}
 }
@@ -4932,41 +4932,41 @@ function safeActiveElement() {
 	} catch ( err ) { }
 }
 
-function on( elem, types, selector, data, fn, one ) {
+function on( elem, types, selector, Data, fn, one ) {
 	var origFn, type;
 
 	// Types can be a map of types/handlers
 	if ( typeof types === "object" ) {
 
-		// ( types-Object, selector, data )
+		// ( types-Object, selector, Data )
 		if ( typeof selector !== "string" ) {
 
-			// ( types-Object, data )
-			data = data || selector;
+			// ( types-Object, Data )
+			Data = Data || selector;
 			selector = undefined;
 		}
 		for ( type in types ) {
-			on( elem, type, selector, data, types[ type ], one );
+			on( elem, type, selector, Data, types[ type ], one );
 		}
 		return elem;
 	}
 
-	if ( data == null && fn == null ) {
+	if ( Data == null && fn == null ) {
 
 		// ( types, fn )
 		fn = selector;
-		data = selector = undefined;
+		Data = selector = undefined;
 	} else if ( fn == null ) {
 		if ( typeof selector === "string" ) {
 
 			// ( types, selector, fn )
-			fn = data;
-			data = undefined;
+			fn = Data;
+			Data = undefined;
 		} else {
 
-			// ( types, data, fn )
-			fn = data;
-			data = selector;
+			// ( types, Data, fn )
+			fn = Data;
+			Data = selector;
 			selector = undefined;
 		}
 	}
@@ -4989,7 +4989,7 @@ function on( elem, types, selector, data, fn, one ) {
 		fn.guid = origFn.guid || ( origFn.guid = jQuery.guid++ );
 	}
 	return elem.each( function() {
-		jQuery.event.add( this, types, fn, data, selector );
+		jQuery.event.add( this, types, fn, Data, selector );
 	} );
 }
 
@@ -5001,19 +5001,19 @@ jQuery.event = {
 
 	global: {},
 
-	add: function( elem, types, handler, data, selector ) {
+	add: function( elem, types, handler, Data, selector ) {
 
 		var handleObjIn, eventHandle, tmp,
 			events, t, handleObj,
 			special, handlers, type, namespaces, origType,
-			elemData = dataPriv.get( elem );
+			elemData = DataPriv.get( elem );
 
 		// Don't attach events to noData or text/comment nodes (but allow plain objects)
 		if ( !elemData ) {
 			return;
 		}
 
-		// Caller can pass in an object of custom data in lieu of the handler
+		// Caller can pass in an object of custom Data in lieu of the handler
 		if ( handler.handler ) {
 			handleObjIn = handler;
 			handler = handleObjIn.handler;
@@ -5071,7 +5071,7 @@ jQuery.event = {
 			handleObj = jQuery.extend( {
 				type: type,
 				origType: origType,
-				data: data,
+				Data: Data,
 				handler: handler,
 				guid: handler.guid,
 				selector: selector,
@@ -5086,7 +5086,7 @@ jQuery.event = {
 
 				// Only use addEventListener if the special events handler returns false
 				if ( !special.setup ||
-					special.setup.call( elem, data, namespaces, eventHandle ) === false ) {
+					special.setup.call( elem, Data, namespaces, eventHandle ) === false ) {
 
 					if ( elem.addEventListener ) {
 						elem.addEventListener( type, eventHandle );
@@ -5121,7 +5121,7 @@ jQuery.event = {
 		var j, origCount, tmp,
 			events, t, handleObj,
 			special, handlers, type, namespaces, origType,
-			elemData = dataPriv.hasData( elem ) && dataPriv.get( elem );
+			elemData = DataPriv.hasData( elem ) && DataPriv.get( elem );
 
 		if ( !elemData || !( events = elemData.events ) ) {
 			return;
@@ -5183,9 +5183,9 @@ jQuery.event = {
 			}
 		}
 
-		// Remove data and the expando if it's no longer used
+		// Remove Data and the expando if it's no longer used
 		if ( jQuery.isEmptyObject( events ) ) {
-			dataPriv.remove( elem, "handle events" );
+			DataPriv.remove( elem, "handle events" );
 		}
 	},
 
@@ -5196,7 +5196,7 @@ jQuery.event = {
 
 		var i, j, ret, matched, handleObj, handlerQueue,
 			args = new Array( arguments.length ),
-			handlers = ( dataPriv.get( this, "events" ) || {} )[ event.type ] || [],
+			handlers = ( DataPriv.get( this, "events" ) || {} )[ event.type ] || [],
 			special = jQuery.event.special[ event.type ] || {};
 
 		// Use the fix-ed jQuery.Event rather than the (read-only) native event
@@ -5231,7 +5231,7 @@ jQuery.event = {
 					event.rnamespace.test( handleObj.namespace ) ) {
 
 					event.handleObj = handleObj;
-					event.data = handleObj.data;
+					event.Data = handleObj.Data;
 
 					ret = ( ( jQuery.event.special[ handleObj.origType ] || {} ).handle ||
 						handleObj.handler ).apply( matched.elem, args );
@@ -5355,28 +5355,28 @@ jQuery.event = {
 		click: {
 
 			// Utilize native event to ensure correct state for checkable inputs
-			setup: function( data ) {
+			setup: function( Data ) {
 
 				// For mutual compressibility with _default, replace `this` access with a local var.
-				// `|| data` is dead code meant only to preserve the variable through minification.
-				var el = this || data;
+				// `|| Data` is dead code meant only to preserve the variable through minification.
+				var el = this || Data;
 
 				// Claim the first handler
 				if ( rcheckableType.test( el.type ) &&
 					el.click && nodeName( el, "input" ) ) {
 
-					// dataPriv.set( el, "click", ... )
+					// DataPriv.set( el, "click", ... )
 					leverageNative( el, "click", returnTrue );
 				}
 
 				// Return false to allow normal processing in the caller
 				return false;
 			},
-			trigger: function( data ) {
+			trigger: function( Data ) {
 
 				// For mutual compressibility with _default, replace `this` access with a local var.
-				// `|| data` is dead code meant only to preserve the variable through minification.
-				var el = this || data;
+				// `|| Data` is dead code meant only to preserve the variable through minification.
+				var el = this || Data;
 
 				// Force setup before triggering a click
 				if ( rcheckableType.test( el.type ) &&
@@ -5395,7 +5395,7 @@ jQuery.event = {
 				var target = event.target;
 				return rcheckableType.test( target.type ) &&
 					target.click && nodeName( target, "input" ) &&
-					dataPriv.get( target, "click" ) ||
+					DataPriv.get( target, "click" ) ||
 					nodeName( target, "a" );
 			}
 		},
@@ -5421,24 +5421,24 @@ function leverageNative( el, type, expectSync ) {
 
 	// Missing expectSync indicates a trigger call, which must force setup through jQuery.event.add
 	if ( !expectSync ) {
-		if ( dataPriv.get( el, type ) === undefined ) {
+		if ( DataPriv.get( el, type ) === undefined ) {
 			jQuery.event.add( el, type, returnTrue );
 		}
 		return;
 	}
 
 	// Register the controller as a special universal handler for all event namespaces
-	dataPriv.set( el, type, false );
+	DataPriv.set( el, type, false );
 	jQuery.event.add( el, type, {
 		namespace: false,
 		handler: function( event ) {
 			var notAsync, result,
-				saved = dataPriv.get( this, type );
+				saved = DataPriv.get( this, type );
 
 			if ( ( event.isTrigger & 1 ) && this[ type ] ) {
 
 				// Interrupt processing of the outer synthetic .trigger()ed event
-				// Saved data should be false in such cases, but might be a leftover capture object
+				// Saved Data should be false in such cases, but might be a leftover capture object
 				// from an async native handler (gh-4350)
 				if ( !saved.length ) {
 
@@ -5446,16 +5446,16 @@ function leverageNative( el, type, expectSync ) {
 					// There will always be at least one argument (an event object), so this array
 					// will not be confused with a leftover capture object.
 					saved = slice.call( arguments );
-					dataPriv.set( this, type, saved );
+					DataPriv.set( this, type, saved );
 
 					// Trigger the native event and capture its result
 					// Support: IE <=9 - 11+
 					// focus() and blur() are asynchronous
 					notAsync = expectSync( this, type );
 					this[ type ]();
-					result = dataPriv.get( this, type );
+					result = DataPriv.get( this, type );
 					if ( saved !== result || notAsync ) {
-						dataPriv.set( this, type, false );
+						DataPriv.set( this, type, false );
 					} else {
 						result = {};
 					}
@@ -5482,7 +5482,7 @@ function leverageNative( el, type, expectSync ) {
 			} else if ( saved.length ) {
 
 				// ...and capture the result
-				dataPriv.set( this, type, {
+				DataPriv.set( this, type, {
 					value: jQuery.event.trigger(
 
 						// Support: IE <=9 - 11+
@@ -5666,8 +5666,8 @@ jQuery.each( { focus: "focusin", blur: "focusout" }, function( type, delegateTyp
 		setup: function() {
 
 			// Claim the first handler
-			// dataPriv.set( this, "focus", ... )
-			// dataPriv.set( this, "blur", ... )
+			// DataPriv.set( this, "focus", ... )
+			// DataPriv.set( this, "blur", ... )
 			leverageNative( this, type, expectSync );
 
 			// Return false to allow normal processing in the caller
@@ -5724,11 +5724,11 @@ jQuery.each( {
 
 jQuery.fn.extend( {
 
-	on: function( types, selector, data, fn ) {
-		return on( this, types, selector, data, fn );
+	on: function( types, selector, Data, fn ) {
+		return on( this, types, selector, Data, fn );
 	},
-	one: function( types, selector, data, fn ) {
-		return on( this, types, selector, data, fn, 1 );
+	one: function( types, selector, Data, fn ) {
+		return on( this, types, selector, Data, fn, 1 );
 	},
 	off: function( types, selector, fn ) {
 		var handleObj, type;
@@ -5785,7 +5785,7 @@ var
 
 	// checked="checked" or checked
 	rchecked = /checked\s*(?:[^=]|=\s*.checked.)/i,
-	rcleanScript = /^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g;
+	rcleanScript = /^\s*<!(?:\[CData\[|--)|(?:\]\]|--)>\s*$/g;
 
 // Prefer a tbody over its parent table for containing new rows
 function manipulationTarget( elem, content ) {
@@ -5814,21 +5814,21 @@ function restoreScript( elem ) {
 }
 
 function cloneCopyEvent( src, dest ) {
-	var i, l, type, pdataOld, pdataCur, udataOld, udataCur, events;
+	var i, l, type, pDataOld, pDataCur, uDataOld, uDataCur, events;
 
 	if ( dest.nodeType !== 1 ) {
 		return;
 	}
 
-	// 1. Copy private data: events, handlers, etc.
-	if ( dataPriv.hasData( src ) ) {
-		pdataOld = dataPriv.access( src );
-		pdataCur = dataPriv.set( dest, pdataOld );
-		events = pdataOld.events;
+	// 1. Copy private Data: events, handlers, etc.
+	if ( DataPriv.hasData( src ) ) {
+		pDataOld = DataPriv.access( src );
+		pDataCur = DataPriv.set( dest, pDataOld );
+		events = pDataOld.events;
 
 		if ( events ) {
-			delete pdataCur.handle;
-			pdataCur.events = {};
+			delete pDataCur.handle;
+			pDataCur.events = {};
 
 			for ( type in events ) {
 				for ( i = 0, l = events[ type ].length; i < l; i++ ) {
@@ -5838,12 +5838,12 @@ function cloneCopyEvent( src, dest ) {
 		}
 	}
 
-	// 2. Copy user data
-	if ( dataUser.hasData( src ) ) {
-		udataOld = dataUser.access( src );
-		udataCur = jQuery.extend( {}, udataOld );
+	// 2. Copy user Data
+	if ( DataUser.hasData( src ) ) {
+		uDataOld = DataUser.access( src );
+		uDataCur = jQuery.extend( {}, uDataOld );
 
-		dataUser.set( dest, udataCur );
+		DataUser.set( dest, uDataCur );
 	}
 }
 
@@ -5930,7 +5930,7 @@ function domManip( collection, args, callback, ignored ) {
 				for ( i = 0; i < hasScripts; i++ ) {
 					node = scripts[ i ];
 					if ( rscriptType.test( node.type || "" ) &&
-						!dataPriv.access( node, "globalEval" ) &&
+						!DataPriv.access( node, "globalEval" ) &&
 						jQuery.contains( doc, node ) ) {
 
 						if ( node.src && ( node.type || "" ).toLowerCase()  !== "module" ) {
@@ -5979,7 +5979,7 @@ jQuery.extend( {
 		return html.replace( rxhtmlTag, "<$1></$2>" );
 	},
 
-	clone: function( elem, dataAndEvents, deepDataAndEvents ) {
+	clone: function( elem, DataAndEvents, deepDataAndEvents ) {
 		var i, l, srcElements, destElements,
 			clone = elem.cloneNode( true ),
 			inPage = isAttached( elem );
@@ -5998,7 +5998,7 @@ jQuery.extend( {
 		}
 
 		// Copy the events from the original to the clone
-		if ( dataAndEvents ) {
+		if ( DataAndEvents ) {
 			if ( deepDataAndEvents ) {
 				srcElements = srcElements || getAll( elem );
 				destElements = destElements || getAll( clone );
@@ -6022,34 +6022,34 @@ jQuery.extend( {
 	},
 
 	cleanData: function( elems ) {
-		var data, elem, type,
+		var Data, elem, type,
 			special = jQuery.event.special,
 			i = 0;
 
 		for ( ; ( elem = elems[ i ] ) !== undefined; i++ ) {
 			if ( acceptData( elem ) ) {
-				if ( ( data = elem[ dataPriv.expando ] ) ) {
-					if ( data.events ) {
-						for ( type in data.events ) {
+				if ( ( Data = elem[ DataPriv.expando ] ) ) {
+					if ( Data.events ) {
+						for ( type in Data.events ) {
 							if ( special[ type ] ) {
 								jQuery.event.remove( elem, type );
 
 							// This is a shortcut to avoid jQuery.event.remove's overhead
 							} else {
-								jQuery.removeEvent( elem, type, data.handle );
+								jQuery.removeEvent( elem, type, Data.handle );
 							}
 						}
 					}
 
 					// Support: Chrome <=35 - 45+
 					// Assign undefined instead of using delete, see Data#remove
-					elem[ dataPriv.expando ] = undefined;
+					elem[ DataPriv.expando ] = undefined;
 				}
-				if ( elem[ dataUser.expando ] ) {
+				if ( elem[ DataUser.expando ] ) {
 
 					// Support: Chrome <=35 - 45+
 					// Assign undefined instead of using delete, see Data#remove
-					elem[ dataUser.expando ] = undefined;
+					elem[ DataUser.expando ] = undefined;
 				}
 			}
 		}
@@ -6129,12 +6129,12 @@ jQuery.fn.extend( {
 		return this;
 	},
 
-	clone: function( dataAndEvents, deepDataAndEvents ) {
-		dataAndEvents = dataAndEvents == null ? false : dataAndEvents;
-		deepDataAndEvents = deepDataAndEvents == null ? dataAndEvents : deepDataAndEvents;
+	clone: function( DataAndEvents, deepDataAndEvents ) {
+		DataAndEvents = DataAndEvents == null ? false : DataAndEvents;
+		deepDataAndEvents = deepDataAndEvents == null ? DataAndEvents : deepDataAndEvents;
 
 		return this.map( function() {
-			return jQuery.clone( this, dataAndEvents, deepDataAndEvents );
+			return jQuery.clone( this, DataAndEvents, deepDataAndEvents );
 		} );
 	},
 
@@ -7356,7 +7356,7 @@ jQuery.fn.extend( {
 				if ( className ) {
 
 					// Store className if set
-					dataPriv.set( this, "__className__", className );
+					DataPriv.set( this, "__className__", className );
 				}
 
 				// If the element has a class name or if we're passed `false`,
@@ -7367,7 +7367,7 @@ jQuery.fn.extend( {
 					this.setAttribute( "class",
 						className || value === false ?
 						"" :
-						dataPriv.get( this, "__className__" ) || ""
+						DataPriv.get( this, "__className__" ) || ""
 					);
 				}
 			}
@@ -7587,7 +7587,7 @@ var rfocusMorph = /^(?:focusinfocus|focusoutblur)$/,
 
 jQuery.extend( jQuery.event, {
 
-	trigger: function( event, data, elem, onlyHandlers ) {
+	trigger: function( event, Data, elem, onlyHandlers ) {
 
 		var i, cur, tmp, bubbleType, ontype, handle, special, lastElement,
 			eventPath = [ elem || document ],
@@ -7633,14 +7633,14 @@ jQuery.extend( jQuery.event, {
 			event.target = elem;
 		}
 
-		// Clone any incoming data and prepend the event, creating the handler arg list
-		data = data == null ?
+		// Clone any incoming Data and prepend the event, creating the handler arg list
+		Data = Data == null ?
 			[ event ] :
-			jQuery.makeArray( data, [ event ] );
+			jQuery.makeArray( Data, [ event ] );
 
 		// Allow special events to draw outside the lines
 		special = jQuery.event.special[ type ] || {};
-		if ( !onlyHandlers && special.trigger && special.trigger.apply( elem, data ) === false ) {
+		if ( !onlyHandlers && special.trigger && special.trigger.apply( elem, Data ) === false ) {
 			return;
 		}
 
@@ -7672,16 +7672,16 @@ jQuery.extend( jQuery.event, {
 				special.bindType || type;
 
 			// jQuery handler
-			handle = ( dataPriv.get( cur, "events" ) || {} )[ event.type ] &&
-				dataPriv.get( cur, "handle" );
+			handle = ( DataPriv.get( cur, "events" ) || {} )[ event.type ] &&
+				DataPriv.get( cur, "handle" );
 			if ( handle ) {
-				handle.apply( cur, data );
+				handle.apply( cur, Data );
 			}
 
 			// Native handler
 			handle = ontype && cur[ ontype ];
 			if ( handle && handle.apply && acceptData( cur ) ) {
-				event.result = handle.apply( cur, data );
+				event.result = handle.apply( cur, Data );
 				if ( event.result === false ) {
 					event.preventDefault();
 				}
@@ -7693,7 +7693,7 @@ jQuery.extend( jQuery.event, {
 		if ( !onlyHandlers && !event.isDefaultPrevented() ) {
 
 			if ( ( !special._default ||
-				special._default.apply( eventPath.pop(), data ) === false ) &&
+				special._default.apply( eventPath.pop(), Data ) === false ) &&
 				acceptData( elem ) ) {
 
 				// Call a native DOM method on the target with the same name as the event.
@@ -7751,15 +7751,15 @@ jQuery.extend( jQuery.event, {
 
 jQuery.fn.extend( {
 
-	trigger: function( type, data ) {
+	trigger: function( type, Data ) {
 		return this.each( function() {
-			jQuery.event.trigger( type, data, this );
+			jQuery.event.trigger( type, Data, this );
 		} );
 	},
-	triggerHandler: function( type, data ) {
+	triggerHandler: function( type, Data ) {
 		var elem = this[ 0 ];
 		if ( elem ) {
-			return jQuery.event.trigger( type, data, elem, true );
+			return jQuery.event.trigger( type, Data, elem, true );
 		}
 	}
 } );
@@ -7784,23 +7784,23 @@ if ( !support.focusin ) {
 		jQuery.event.special[ fix ] = {
 			setup: function() {
 				var doc = this.ownerDocument || this,
-					attaches = dataPriv.access( doc, fix );
+					attaches = DataPriv.access( doc, fix );
 
 				if ( !attaches ) {
 					doc.addEventListener( orig, handler, true );
 				}
-				dataPriv.access( doc, fix, ( attaches || 0 ) + 1 );
+				DataPriv.access( doc, fix, ( attaches || 0 ) + 1 );
 			},
 			teardown: function() {
 				var doc = this.ownerDocument || this,
-					attaches = dataPriv.access( doc, fix ) - 1;
+					attaches = DataPriv.access( doc, fix ) - 1;
 
 				if ( !attaches ) {
 					doc.removeEventListener( orig, handler, true );
-					dataPriv.remove( doc, fix );
+					DataPriv.remove( doc, fix );
 
 				} else {
-					dataPriv.access( doc, fix, attaches );
+					DataPriv.access( doc, fix, attaches );
 				}
 			}
 		};
@@ -8020,12 +8020,12 @@ support.createHTMLDocument = ( function() {
 } )();
 
 
-// Argument "data" should be string of html
+// Argument "Data" should be string of html
 // context (optional): If specified, the fragment will be created in this context,
 // defaults to document
 // keepScripts (optional): If true, will include scripts passed in the html string
-jQuery.parseHTML = function( data, context, keepScripts ) {
-	if ( typeof data !== "string" ) {
+jQuery.parseHTML = function( Data, context, keepScripts ) {
+	if ( typeof Data !== "string" ) {
 		return [];
 	}
 	if ( typeof context === "boolean" ) {
@@ -8053,7 +8053,7 @@ jQuery.parseHTML = function( data, context, keepScripts ) {
 		}
 	}
 
-	parsed = rsingleTag.exec( data );
+	parsed = rsingleTag.exec( Data );
 	scripts = !keepScripts && [];
 
 	// Single tag
@@ -8061,7 +8061,7 @@ jQuery.parseHTML = function( data, context, keepScripts ) {
 		return [ context.createElement( parsed[ 1 ] ) ];
 	}
 
-	parsed = buildFragment( [ data ], context, scripts );
+	parsed = buildFragment( [ Data ], context, scripts );
 
 	if ( scripts && scripts.length ) {
 		jQuery( scripts ).remove();
@@ -8181,7 +8181,7 @@ jQuery.fn.extend( {
 		} else {
 			offset = this.offset();
 
-			// Account for the *real* offset parent, which can be the document or its root element
+			// Account for the *real* offset parent, which can be the document or its Data element
 			// when a statically positioned element is identified
 			doc = elem.ownerDocument;
 			offsetParent = elem.offsetParent || doc.documentElement;
@@ -8337,9 +8337,9 @@ jQuery.each( ( "blur focus focusin focusout resize scroll click dblclick " +
 	function( i, name ) {
 
 	// Handle event binding
-	jQuery.fn[ name ] = function( data, fn ) {
+	jQuery.fn[ name ] = function( Data, fn ) {
 		return arguments.length > 0 ?
-			this.on( name, null, data, fn ) :
+			this.on( name, null, Data, fn ) :
 			this.trigger( name );
 	};
 } );
@@ -8355,15 +8355,15 @@ jQuery.fn.extend( {
 
 jQuery.fn.extend( {
 
-	bind: function( types, data, fn ) {
-		return this.on( types, null, data, fn );
+	bind: function( types, Data, fn ) {
+		return this.on( types, null, Data, fn );
 	},
 	unbind: function( types, fn ) {
 		return this.off( types, null, fn );
 	},
 
-	delegate: function( selector, types, data, fn ) {
-		return this.on( types, selector, data, fn );
+	delegate: function( selector, types, Data, fn ) {
+		return this.on( types, selector, Data, fn );
 	},
 	undelegate: function( selector, types, fn ) {
 

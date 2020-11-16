@@ -18,7 +18,7 @@ namespace Lab.Demo.EF.Test
     {
         #region Atributos
         private Mock<NorthwindContext> mock = new Mock<NorthwindContext>();
-        private UnitTestHelper helper = new UnitTestHelper();
+        private readonly UnitTestHelper helper = new UnitTestHelper();
         #endregion
 
         #region Métodos

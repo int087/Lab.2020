@@ -37,7 +37,7 @@ namespace Lab.Demo.EF.Web.Controllers
             var territory = new Territories();
 
             // Si el id es 0, se está agregando
-            if (id == "")
+            if (id == "0")
             {
                 insert = true;
                 View().ViewBag.Title = "Insertar Territorio";

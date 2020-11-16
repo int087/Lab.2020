@@ -5,7 +5,14 @@
 
 <h2>Index</h2>
 
-<div>@Html.ActionLink("Insertar", "Accion",  new { id = 0 })</div>
+@if (Session["message"] != null)
+{
+    <div class=@Session["messageClass"].ToString()>
+        @Session["message"]
+    </div>
+}
+
+<div>@Html.ActionLink("Insertar", "Accion", new { id = 0 })</div>
 
 <table class="table">
     <tr>
@@ -22,9 +29,9 @@
             <td>@category.CategoryName</td>
             <td>@category.Description</td>
             <td>
-                @Html.ActionLink("Actualizar", "Accion", new { id = category.CategoryID }) 
-                @Html.ActionLink("Eliminar", "Delete", new { id = category.CategoryID }, 
-                                                       new { onclick=$"return confirm('¿Está seguro que desea eliminar la categoría {category.CategoryID}?');" })
+                @Html.ActionLink("Actualizar", "Accion", new { id = category.CategoryID })
+                @Html.ActionLink("Eliminar", "Delete", new { id = category.CategoryID },
+                                                       new { onclick = $"return confirm('¿Está seguro que desea eliminar la categoría {category.CategoryID}?');" })
             </td>
         </tr>
     }

@@ -1,0 +1,50 @@
+﻿@model Lab.Demo.EF.Web.Models.SpotifyView
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<link href="~/Css/style.css" rel="stylesheet" type="text/css" />
+
+@using (Html.BeginForm("Find", "API", FormMethod.Get))
+{
+    <fieldset>
+        <legend>Ingrese el Albúm y el Artista:</legend>
+        <div class="form-group">Artista: @Html.TextBoxFor(m => m.artist, new { @class = "form-control" })</div>
+        <div class="form-group">Album: @Html.TextBoxFor(m => m.album, new { @class = "form-control" })</div>
+
+        <input class="btn btn-primary" type="submit" name="find" value="Buscar" />
+    </fieldset>
+}
+
+
+@if (Model.Items.Count() > 0)
+{
+    <fieldset>
+        <legend>Artista: @Model.artist / Album: @Model.album</legend>
+
+        <table class="table">
+            <tr>
+                <th>Nro.</th>
+                <th>Nombre</th>
+                <th>Duración</th>
+            </tr>
+
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>@item.track_number</td>
+                    <td>@item.name</td>
+                    <td>@TimeSpan.FromMilliseconds(item.duration_ms).ToString(@"mm\:ss")</td>
+                </tr>
+            }
+        </table>
+    </fieldset>
+}
+else
+{
+    <div class="alert alert-danger alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        No hay datos para mostrar.
+    </div>
+}

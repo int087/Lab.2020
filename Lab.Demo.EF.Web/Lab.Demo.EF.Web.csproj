@@ -126,12 +126,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\APIController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TerritoryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ItemView.cs" />
+    <Compile Include="Models\SpotifyView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +142,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Css\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -174,10 +178,10 @@
     <Content Include="Views\Category\Accion.cshtml" />
     <Content Include="Views\Territory\Index.cshtml" />
     <Content Include="Views\Territory\Accion.cshtml" />
+    <Content Include="Views\API\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -193,6 +197,10 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Lab.Demo.EF.APISpotify\Lab.Demo.EF.APISpotify.csproj">
+      <Project>{2cc0206e-4651-44ff-b8b9-10cc0910f4ed}</Project>
+      <Name>Lab.Demo.EF.APISpotify</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Lab.Demo.EF.DataAccess\Lab.Demo.EF.DataAccess.csproj">
       <Project>{E92B7FB7-AF58-4C3C-B01F-3A20264BB597}</Project>
       <Name>Lab.Demo.EF.DataAccess</Name>

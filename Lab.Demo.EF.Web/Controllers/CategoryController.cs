@@ -2,9 +2,6 @@
 using Lab.Demo.EF.Entities;
 using Lab.Demo.EF.Logic;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Lab.Demo.EF.Web.Controllers
@@ -61,19 +58,24 @@ namespace Lab.Demo.EF.Web.Controllers
             {
                 if (insert)
                 {
-                    logic.Insert(category);
+                    var newCategory = logic.Insert(category);
+                    Session["messageClass"] = "alert alert-success alert-dismissible";
+                    Session["message"] = $"Se agregó la categoría {newCategory.CategoryID}";
                 }
                 else
                 {
                     logic.Update(category);
+                    Session["messageClass"] = "alert alert-success alert-dismissible";
+                    Session["message"] = $"Se actualizó la categoría {category.CategoryID}";
                 }
-
-                return RedirectToAction("index");
             }
             catch(Exception ex)
             {
-                throw ex;
+                Session["messageClass"] = "alert alert-danger alert-dismissible";
+                Session["message"] = ex.Message;
             }
+
+            return RedirectToAction("index");
         }
         public ActionResult Back()
         {

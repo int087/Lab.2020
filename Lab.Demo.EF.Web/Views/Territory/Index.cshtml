@@ -5,7 +5,7 @@
 
 <h2>@ViewBag.Title</h2>
 
-@Html.ActionLink("Insertar", "Accion", new { id = "" })
+@Html.ActionLink("Insertar", "Accion", new { id = "0" })
 <table class="table">
     <tr>
         <th>Id</th>
@@ -14,7 +14,7 @@
         <th>Acción</th>
     </tr>
 
-    @foreach(var territory in Model)
+    @foreach (var territory in Model)
     {
         <tr>
             <td>@territory.TerritoryID</td>
@@ -23,7 +23,7 @@
             <td>
                 @Html.ActionLink("Actualizar", "Accion", new { id = territory.TerritoryID })
                 @Html.ActionLink("Eliminar", "Delete", new { id = territory.TerritoryID },
-                                                       new { onclick=$"return confirm('¿Está seguro de que desea eliminar el territorio {territory.TerritoryID}?')"})
+                                                       new { onclick = $"return confirm('¿Está seguro de que desea eliminar el territorio {territory.TerritoryID}?')" })
             </td>
         </tr>
     }
